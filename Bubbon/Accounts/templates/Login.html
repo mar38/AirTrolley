@@ -1,0 +1,74 @@
+
+{% load staticfiles %}
+
+{% block content %}
+<script src="{% static 'jquery-1.11.2.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+          rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+<br>
+<br>
+    <body style="background-color:  #000000;">
+<div class='main'>
+    {% if loggedin %}
+        You are now logged in.
+        Please <a href='/member/'>click here</a> to continue.
+        <br><br>
+    {% else %}
+        <div class="module form-module">
+        <div class="pen-title">
+        <h1>Login</h1><span>Pen <i class='fa fa-paint-brush'></i> + <i class='fa fa-code'></i></span>
+        </div>
+        <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+
+        </div>
+        <form method='POST' action=''>
+        	{% csrf_token %}
+            <span class='fieldname'>Username</span>
+            <input type='text' maxlength='16' id='logusername' name='username'>
+            <span id='info'></span>
+            <br>
+            <span class='fieldname'>Password</span>
+            <input type='password' maxlength='16' name='password'><br>
+            <span class='fieldname'>&nbsp;</span>
+            <input type="submit" class="btn btn-default" value="Submit" />
+        </form>
+    {% endif %}
+</div>
+ <script type="text/javascript">
+$('#logusername').blur(function(){
+		$.ajax({
+			type: 'POST',
+{#            url: './login/logcheckuser',#}
+{#            url:"{% url 'logCheckUser' %}",#}
+{#            "{% url 'Checkout' %}"#}
+			url: './logcheckuser/',
+			data : {
+				'username' : $('#logusername').val(),
+				'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+			},
+			success: checkuseranswer,
+			dataType: 'html'
+		});
+	});
+ </script>
+
+<script type="text/javascript">
+
+
+function checkuseranswer(data, textStatus, jqHXR)
+{
+	$('#info').html(data);}
+
+     </script>
+
+</div>
+
+
+    </body>
+{% endblock %}

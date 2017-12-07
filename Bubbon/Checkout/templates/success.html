@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Link to the Bootstrap CSS from a CDN -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+          rel="stylesheet">
+         {% load staticfiles %}
+             <link rel="stylesheet" href="{% static 'navigation.css' %}">
+             <link rel="stylesheet" href="{% static 'login.css' %}">
+
+  </head>
+  <body>
+      <div class="container">
+    <div class="row">
+    <br>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+
+                <div class="collapse navbar-collapse" id="navbar-admin">
+                 <!---------------------------------MENU--------------------------------->
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'Home' %}"><span class="glyphicon glyphicon-dashboard"></span> Home</a></li>
+                        <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-bullhorn"></span> Login</a></li>
+
+                    </ul>
+
+                <!---------------------------------LOGIN - SIGNUP--------------------------------->
+
+
+                <!---------------------------------SEARCH--------------------------------->
+
+             </div><!--/.container-fluid -->
+            </div>
+        </nav><!--/.navbar -->
+    </div>
+</div>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">Registration form -</h3>
+      </div>
+       <div class="row">
+       <!-- Display the success message on successful submission and validation
+            of the contact form data.
+        -->
+       <div class="alert alert-success">
+        Thank You for visiting and we hope to see you back soon.
+       </div>
+       </div>
+    </div>
+  </body>
+</html>
